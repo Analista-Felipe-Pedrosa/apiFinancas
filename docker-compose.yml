@@ -1,5 +1,16 @@
 version: '3.8'
 services:
+   app:
+      build:
+         context: .
+         dockerfile: Dockerfile
+      container_name: spring_app
+      depends_on:
+         - db
+      ports:
+         - "8082:8082"
+      networks:
+         - my_network
    db:
       image: postgres:16
       container_name: postgres_db
@@ -18,4 +29,4 @@ volumes:
   
 networks:
     my_network:
-        driver: bridge			
+        driver: bridge	
